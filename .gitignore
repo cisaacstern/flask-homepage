@@ -1,3 +1,13 @@
+#Don't need every test included in git
+albedo/exports/
+
+#This won't change meaninfully
+/.ipynb
+
+#.DS_Store
+/.DS_Store
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
