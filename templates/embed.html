@@ -12,6 +12,18 @@
         href= "{{ url_for('static',filename='styles/custom.css') }}">
   <link rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Leaflet stylesheet -->
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+
+         <!-- Leaflet JS -->
+
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 </head>
 
 <body>
@@ -38,25 +50,24 @@
                   </ul>
                 </nav>
               </div>
-
-              <div class="social-row">
-                <div class="whatido"></div>
-                <a href="https://twitter.com/charlesstern" 
-                   target="_blank"
-                   style="text-decoration: none">
-                  <i class="fa fa-twitter fa-2x"></i></a>
-                <a href="https://github.com/cisaacstern"
-                   target="_blank"
-                   style="text-decoration: none">
-                  <i class="fa fa-github fa-2x"></i></a>
-                <a href="https://www.linkedin.com/in/charles-stern-ab965b29/" 
-                   target="_blank"
-                   style="text-decoration: none"> 
-                  <i class="fa fa-linkedin fa-2x"></i></a>
-                <a href="mailto:charlesisaacstern@gmail.com" 
-                   target="_blank"
-                   style="text-decoration: none"> 
-                  <i class="fa fa-envelope fa-2x"></i></a>
+              
+              <div>
+                <a style="display:inline-block;"
+                   href="https://twitter.com/charlesstern" 
+                   target="_blank">
+                   <i class="fa fa-twitter"></i></a>
+                <a style="display:inline-block;"
+                   href="https://github.com/cisaacstern"
+                   target="_blank">
+                   <i class="fa fa-github"></i></a>
+                <a style="display:inline-block;"
+                   href="https://www.linkedin.com/in/charles-stern-ab965b29/" 
+                   target="_blank"> 
+                   <i class="fa fa-linkedin"></i></a>
+                <a style="display:inline-block;"
+                   href="mailto:charlesisaacstern@gmail.com" 
+                   target="_blank"> 
+                   <i class="fa fa-envelope"></i></a>
               </div>
           </div>
       </div>

@@ -1,9 +1,41 @@
 {% extends "embed.html" %}
 {% block content %}
+
 <div>
-    <h1>Topo Gallery</h1>
-    <iframe width="100%" height="500px" 
-            src="https://caltopo.com/map.html#ll=37.12953,-118.47879&z=12&b=mbt">
-    </iframe>
+    <h1>Topo-Gallery</h1>
+    <p>Here's a map.</p>
 </div>
+
+<div id="mapid" style="height: 600px; width:800px;"></div>
+
+<script type="text/javascript">
+var mymap = L.map('mapid').setView([37.1, -118.5], 13);
+
+L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}'
+).addTo(mymap);
+
+var willow = L.marker([37.100423, -118.459334]).addTo(mymap);
+willow.bindPopup("<img src=\"{{ url_for('static',filename='images/willow.jpeg') }}\" width=\"200px\"/>"
+).openPopup();
+
+var scimitar = L.marker([37.085811, -118.490634]).addTo(mymap);
+scimitar.bindPopup("<img src=\"{{ url_for('static',filename='images/glacier.jpeg') }}\" width=\"200px\"/>");
+
+var second = L.marker([37.126245, -118.487967]).addTo(mymap);
+second.bindPopup("<img src=\"{{ url_for('static',filename='images/temple.jpeg') }}\" width=\"200px\"/>");
+
+var shoulder = L.marker([37.084368, -118.492304]).addTo(mymap);
+shoulder.bindPopup("<img src=\"{{ url_for('static',filename='images/clouds.jpeg') }}\" width=\"200px\"/>");
+
+var creek = L.marker([37.094579, -118.416960]).addTo(mymap);
+creek.bindPopup("<img src=\"{{ url_for('static',filename='images/creek.jpeg') }}\" width=\"200px\"/>");
+
+var brown = L.marker([37.169278, -118.542245]).addTo(mymap);
+brown.bindPopup("<img src=\"{{ url_for('static',filename='images/brownlake.jpeg') }}\" width=\"200px\"/>");
+
+var pal = L.marker([37.091596, -118.524511]).addTo(mymap);
+pal.bindPopup("<img src=\"{{ url_for('static',filename='images/pal.jpeg') }}\" width=\"200px\"/>");
+
+</script>
+
 {% endblock %}

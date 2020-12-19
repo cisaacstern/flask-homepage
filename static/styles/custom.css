@@ -30,18 +30,13 @@ div.profile-pic img {
     margin-bottom: 1em;
 }
 
-.social-row {
-    margin-top: 1em;
-}
-
 /* Style all font awesome icons */
 .fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 50px;
+    padding: 2px;
+    font-size: 10px;
+    width: 10px;
     text-align: center;
-    text-decoration: none;
-    border-radius: 50%;
+    border-radius: 0%;
 }
   
 /* Add a hover effect if you want */
@@ -71,6 +66,6 @@ color: white;
 
 /* Envelope */
 .fa-envelope {
-    background: #55ACEE;
-    color: white;
-    }
+background: #55ACEE;
+color: white;
+}
