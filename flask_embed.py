@@ -11,84 +11,33 @@ from bokeh.sampledata.sea_surface_temperature import sea_surface_temperature
 from bokeh.server.server import Server
 from bokeh.themes import Theme
 
-app = Flask(__name__)
-
-'''
-def bkapp(doc):
-    df = sea_surface_temperature.copy()
-    source = ColumnDataSource(data=df)
-
-    plot = figure(x_axis_type='datetime', y_range=(0, 25), y_axis_label='Temperature (Celsius)',
-                  title="Sea Surface Temperature at 43.18, -70.43")
-    plot.line('time', 'temperature', source=source)
-
-    def callback(attr, old, new):
-        if new == 0:
-            data = df
-        else:
-            data = df.rolling(f"{new}D").mean()
-        source.data = ColumnDataSource.from_df(data)
-
-    slider = Slider(start=0, end=30, value=0, step=1, title="Smoothing by N Days")
-    slider.on_change('value', callback)
-
-    doc.add_root(column(slider, plot))
-
-    doc.theme = Theme(filename="theme.yaml")
-'''
-
 from bokeh.settings import settings
-settings.resources = 'cdn'
-settings.resources = 'inline'
 
 import albedo._albedo.dashlayout as dashlayout
 import panel as pn
 from bokeh.io import curdoc
-#pn.extension()
 
-dash = dashlayout.DashLayout()
-board = dash.dashboard()
-model = board.get_root()
-curdoc().add_root(model)
-curdoc().title = 'Albedo'
+app = Flask(__name__)
+settings.resources = 'cdn'
+settings.resources = 'inline'
+
+@app.route('/about/')
+def about_page():
+    return render_template("about.html")
 
 def bkapp(doc):
-    '''
-    df = sea_surface_temperature.copy()
-    source = ColumnDataSource(data=df)
-
-    plot = figure(x_axis_type='datetime', y_range=(0, 25), y_axis_label='Temperature (Celsius)',
-                  title="Sea Surface Temperature at 43.18, -70.43")
-    plot.line('time', 'temperature', source=source)
-
-    def callback(attr, old, new):
-        if new == 0:
-            data = df
-        else:
-            data = df.rolling(f"{new}D").mean()
-        source.data = ColumnDataSource.from_df(data)
-
-    slider = Slider(start=0, end=30, value=0, step=1, title="Smoothing by N Days")
-    slider.on_change('value', callback)
-    '''
-
-    #doc.add_root(column(slider, plot))
 
     dash = dashlayout.DashLayout()
     board = dash.dashboard()
     model = board.get_root()
-    #curdoc().add_root(model)
-    #curdoc().title = 'Albedo'
     doc.add_root(model)
 
     doc.theme = Theme(filename="theme.yaml")
 
-
-@app.route('/', methods=['GET'])
+@app.route('/terrain-correction/', methods=['GET'])
 def bkapp_page():
     script = server_document('http://localhost:5006/bkapp')
-    return render_template("embed.html", script=script, template="Flask")
-
+    return render_template("terrain-correction.html", script=script, template="Flask")
 
 def bk_worker():
     # Can't pass num_procs > 1 in this configuration. If you need to run multiple
@@ -98,6 +47,15 @@ def bk_worker():
     server.io_loop.start()
 
 Thread(target=bk_worker).start()
+
+@app.route('/snow-surface-pde/')
+def pde_page():
+    return render_template("snow-surface-pde.html")
+
+@app.route('/topo-gallery/')
+def topo_page():
+    return render_template("topo-gallery.html")
+
 
 if __name__ == '__main__':
     print('Opening single process Flask app with embedded Bokeh application on http://localhost:8000/')

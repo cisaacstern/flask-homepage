@@ -3,16 +3,70 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Embedding a Bokeh Server With {{ framework }}</title>
+  <title>Charles Stern | Python + Geoscience</title>
+  <link rel="icon" 
+        type="image/png" 
+        href= "{{ url_for('static',filename='images/python.png') }}">
+  <link rel= "stylesheet" 
+        type= "text/css" 
+        href= "{{ url_for('static',filename='styles/custom.css') }}">
+  <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <div>
-    This Bokeh app below served by a Bokeh server that has been embedded
-    in another web app framework. For more information see the section
-    <a  target="_blank" href="https://docs.bokeh.org/en/latest/docs/user_guide/server.html#embedding-bokeh-server-as-a-library">Embedding Bokeh Server as a Library</a>
-    in the User's Guide.
+  <div style="width: 100%; overflow: hidden;">
+
+      <div style="width: 300px; float: left; background-color:#D8BFD8; margin: 0px;">
+
+        <div class="profile-pic"><img src="{{ url_for('static',filename='images/irving_headshot.png') }}"/></div>
+
+          <div class="bio-info">
+              <div class="name">Charles Stern</div>
+              <div class="focusareas">Python | Geoscience | Visuals</div>
+              <div class="whatido">
+                <nav>
+                  <ul style="list-style-type:none; margin:0; padding:0;">
+                    <li><a href="{{ url_for('about_page') }}"
+                           style="text-decoration: none">About</a></li>
+                    <li><a href="{{ url_for('bkapp_page') }}"
+                           style="text-decoration: none">Terrain Correction</a></li>
+                    <li><a href="{{ url_for('pde_page') }}" 
+                           style="text-decoration: none">Snow Surface PDE</a></li>
+                    <li><a href="{{ url_for('topo_page') }}" 
+                           style="text-decoration: none">Topo-Gallery</a></li>
+                  </ul>
+                </nav>
+              </div>
+
+              <div class="social-row">
+                <div class="whatido"></div>
+                <a href="https://twitter.com/charlesstern" 
+                   target="_blank"
+                   style="text-decoration: none">
+                  <i class="fa fa-twitter fa-2x"></i></a>
+                <a href="https://github.com/cisaacstern"
+                   target="_blank"
+                   style="text-decoration: none">
+                  <i class="fa fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/charles-stern-ab965b29/" 
+                   target="_blank"
+                   style="text-decoration: none"> 
+                  <i class="fa fa-linkedin fa-2x"></i></a>
+                <a href="mailto:charlesisaacstern@gmail.com" 
+                   target="_blank"
+                   style="text-decoration: none"> 
+                  <i class="fa fa-envelope fa-2x"></i></a>
+              </div>
+          </div>
+      </div>
+
+      <div style="margin-left: 320px;">
+        {% block content %}
+        {% endblock %}
+      </div>
+
   </div>
-  {{ script|safe }}
+
 </body>
 </html>
