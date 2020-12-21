@@ -25,6 +25,10 @@ settings.resources = 'inline'
 def about_page():
     return render_template("about.html")
 
+@app.route('/projects/')
+def projects_page():
+    return render_template("projects.html")
+
 def bkapp(doc):
 
     dash = dashlayout.DashLayout()
@@ -34,7 +38,7 @@ def bkapp(doc):
 
     doc.theme = Theme(filename="theme.yaml")
 
-@app.route('/terrain-correction/', methods=['GET'])
+@app.route('/projects/terrain-correction/', methods=['GET'])
 def bkapp_page():
     script = server_document('http://localhost:5006/bkapp')
     return render_template("terrain-correction.html", script=script, template="Flask")
@@ -48,14 +52,13 @@ def bk_worker():
 
 Thread(target=bk_worker).start()
 
-@app.route('/snow-surface-pde/')
+@app.route('/projects/snow-surface-pde/')
 def pde_page():
     return render_template("snow-surface-pde.html")
 
-@app.route('/topo-gallery/')
-def topo_page():
-    return render_template("topo-gallery.html")
-
+@app.route('/map/')
+def map_page():
+    return render_template("map.html")
 
 if __name__ == '__main__':
     print('Opening single process Flask app with embedded Bokeh application on http://localhost:8000/')

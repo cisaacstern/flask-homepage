@@ -1,18 +1,70 @@
 {% extends "embed.html" %}
 {% block content %}
-
-<div>
-    <h1>Topo-Gallery</h1>
-    <p>Here's a map.</p>
+<div id="sidebar">
+    <h1>leaflet-sidebar</h1>
 </div>
 
 <div id="mapid" style="height: 600px; width:800px;"></div>
 
 <script type="text/javascript">
-var mymap = L.map('mapid').setView([37.1, -118.5], 13);
+
+//basemap tiles
+
+var mymap = L.map('mapid', {
+    minZoom: 5,
+    maxZoom: 16,
+    center: [37.1, -118.5],
+    maxBounds: [
+        [38.250579, -120.498311],
+        [35.238560, -116.022990]
+]}).setView([37.1, -118.5], 13);
 
 L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}'
 ).addTo(mymap);
+
+//sidebar template
+
+var sidebar = L.control.sidebar('sidebar', {
+    closeButton: true,
+    position: 'left',
+    autoPan: false
+});
+mymap.addControl(sidebar);
+
+setTimeout(function () {
+    sidebar.show();
+}, 500);
+
+var marker = L.marker([37.1, -118.5]).addTo(mymap).on('click', function () {
+    sidebar.toggle();
+});
+
+mymap.on('click', function () {
+    sidebar.hide();
+})
+
+sidebar.on('show', function () {
+    console.log('Sidebar will be visible.');
+});
+
+sidebar.on('shown', function () {
+    console.log('Sidebar is visible.');
+});
+
+sidebar.on('hide', function () {
+    console.log('Sidebar will be hidden.');
+});
+
+sidebar.on('hidden', function () {
+    console.log('Sidebar is hidden.');
+});
+
+L.DomEvent.on(sidebar.getCloseButton(), 'click', function () {
+    console.log('Close button clicked.');
+});
+
+
+//original markers
 
 var willow = L.marker([37.100423, -118.459334]).addTo(mymap);
 willow.bindPopup("<img src=\"{{ url_for('static',filename='images/willow.jpeg') }}\" width=\"200px\"/>"
@@ -24,11 +76,20 @@ scimitar.bindPopup("<img src=\"{{ url_for('static',filename='images/glacier.jpeg
 var second = L.marker([37.126245, -118.487967]).addTo(mymap);
 second.bindPopup("<img src=\"{{ url_for('static',filename='images/temple.jpeg') }}\" width=\"200px\"/>");
 
+
 var shoulder = L.marker([37.084368, -118.492304]).addTo(mymap);
 shoulder.bindPopup("<img src=\"{{ url_for('static',filename='images/clouds.jpeg') }}\" width=\"200px\"/>");
 
+shoulder.on('click', function () {
+    sidebar.setContent("helllloooo willow");
+})
+
 var creek = L.marker([37.094579, -118.416960]).addTo(mymap);
 creek.bindPopup("<img src=\"{{ url_for('static',filename='images/creek.jpeg') }}\" width=\"200px\"/>");
+
+creek.on('click', function () {
+    $('sidebar').html("Hellooooooo jQuery!!!!").show().siblings('div').hide();;
+})
 
 var brown = L.marker([37.169278, -118.542245]).addTo(mymap);
 brown.bindPopup("<img src=\"{{ url_for('static',filename='images/brownlake.jpeg') }}\" width=\"200px\"/>");

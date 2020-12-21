@@ -1,9 +1,15 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="en" style="width: 100%; height: 100%;">
 <head>
   <meta charset="utf-8">
+
+    <!-- Leaflet-sidebar meta -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>Charles Stern | Python + Geoscience</title>
+  
   <link rel="icon" 
         type="image/png" 
         href= "{{ url_for('static',filename='images/python.png') }}">
@@ -19,60 +25,75 @@
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
 
-         <!-- Leaflet JS -->
+        <!-- Leaflet JS -->
 
-   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
+        
+        <!-- Leaflet-sidebar stylesheet -->
+
+  <link rel="stylesheet" 
+        href="{{ url_for('static',filename='styles/L.Control.Sidebar.css') }}" />
+
+        <!-- Leaflet-sidebar JS -->
+
+  <script src="{{ url_for('static',filename='js/L.Control.Sidebar.js') }}"></script>
+
+        <!-- jQuery JS -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
-<body>
-  <div style="width: 100%; overflow: hidden;">
+<body style="width: 100%; height: 100%; margin:0%">
+  <div style="width: 100%; height: 100%; overflow: hidden;">
 
-      <div style="width: 300px; float: left; background-color:#D8BFD8; margin: 0px;">
-
-        <div class="profile-pic"><img src="{{ url_for('static',filename='images/irving_headshot.png') }}"/></div>
+      <div style="width: 300px; height: 100%; float: left; margin: 0px;
+      background-image: url({{ url_for('static',filename='images/city_headshot.jpeg') }}); 
+      background-size:100%;">
 
           <div class="bio-info">
-              <div class="name">Charles Stern</div>
-              <div class="focusareas">Python | Geoscience | Visuals</div>
+              <div class="name">CHARLES STERN</div>
+              <div class="focusareas">Python | Geoscience</div>
               <div class="whatido">
                 <nav>
-                  <ul style="list-style-type:none; margin:0; padding:0;">
-                    <li><a href="{{ url_for('about_page') }}"
-                           style="text-decoration: none">About</a></li>
-                    <li><a href="{{ url_for('bkapp_page') }}"
-                           style="text-decoration: none">Terrain Correction</a></li>
-                    <li><a href="{{ url_for('pde_page') }}" 
-                           style="text-decoration: none">Snow Surface PDE</a></li>
-                    <li><a href="{{ url_for('topo_page') }}" 
-                           style="text-decoration: none">Topo-Gallery</a></li>
+                  <ul style="list-style-type:none; padding:0;">
+                    <li style="margin-top:15px; margin-right:15px; display:inline-block;">
+                      <a class="menu" href="{{ url_for('about_page') }}"
+                           style="text-decoration: none"><p>About</p></a></li>
+                    <li style="margin-top:15px; margin-right:15px; display:inline-block;">
+                      <a class="menu" href="{{ url_for('projects_page') }}"
+                           style="text-decoration: none"><p>Projects</p></a></li>
+                    <li style="margin-top:15px; display:inline-block;">
+                      <a class="menu" href="{{ url_for('map_page') }}" 
+                           style="text-decoration: none"><p>Map</p></a></li>
                   </ul>
                 </nav>
               </div>
               
-              <div>
-                <a style="display:inline-block;"
+              <div style="text-align:center; position: absolute; bottom: 1em;">
+                <a class="social" style="display:inline-block; width:48px;"
                    href="https://twitter.com/charlesstern" 
                    target="_blank">
-                   <i class="fa fa-twitter"></i></a>
-                <a style="display:inline-block;"
+                   <i class="fa fa-twitter fa-2x"></i></a>
+                <a class="social" style="display:inline-block; width:48px;"
                    href="https://github.com/cisaacstern"
                    target="_blank">
-                   <i class="fa fa-github"></i></a>
-                <a style="display:inline-block;"
+                   <i class="fa fa-github fa-2x"></i></a>
+                <a class="social" style="display:inline-block; width:48px;"
                    href="https://www.linkedin.com/in/charles-stern-ab965b29/" 
                    target="_blank"> 
-                   <i class="fa fa-linkedin"></i></a>
-                <a style="display:inline-block;"
+                   <i class="fa fa-linkedin fa-2x"></i></a>
+                <a class="social" style="display:inline-block; width:48px;"
                    href="mailto:charlesisaacstern@gmail.com" 
                    target="_blank"> 
-                   <i class="fa fa-envelope"></i></a>
+                   <i class="fa fa-envelope fa-2x"></i></a>
               </div>
           </div>
       </div>
 
-      <div style="margin-left: 320px;">
+      <div style="margin-left: 300px;">
         {% block content %}
         {% endblock %}
       </div>

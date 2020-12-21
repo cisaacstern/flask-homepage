@@ -1,3 +1,51 @@
+/* unvisited link */
+.menu:link {
+color: white;
+}
+
+/* visited link */
+.menu:visited {
+color: white;
+}
+
+/* mouse over link */
+.menu:hover {
+color: #9370DB;
+}
+
+/* selected link */
+.menu:active {
+color: #684ca0;
+}
+
+
+
+
+/* unvisited link */
+.social:link {
+color: #9370DB;
+}
+
+/* visited link */
+.social:visited {
+color: #9370DB;
+}
+
+/* mouse over link */
+.social:hover {
+color: #9370DB;
+}
+
+/* selected link */
+.social:active {
+color: #684ca0;
+}
+
+
+
+
+
+
 /* Bio area */
 div.profile-pic {
     margin-top: 1em;
@@ -14,58 +62,37 @@ div.profile-pic img {
 .bio-info {
     margin: 1em auto;
     max-width: 220px;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: left;
 }
 
 .name {
-    font-size: 1.5em;
+    font-size: 1.25em;
+    color: white;
 }
 
 .focusareas {
     font-size: .9em;
-    font-weight: bold;
+    color: white;
 }
 
 .whatido {
-    margin-top: 1em;
+    margin-top: 0.75em;
     margin-bottom: 1em;
 }
 
 /* Style all font awesome icons */
 .fa {
-    padding: 2px;
-    font-size: 10px;
-    width: 10px;
+    padding: 5px;
+    font-size: 20px;
+    width: 35px;
     text-align: center;
-    border-radius: 0%;
+    border-radius: 30%;
+    background: white;
+    opacity: 0.7;
 }
   
 /* Add a hover effect if you want */
 .fa:hover {
-opacity: 0.7;
-}
-
-/* Set a specific color for each brand */
-
-/* Twitter */
-.fa-twitter {
-background: #55ACEE;
-color: white;
-}
-
-/* Github */
-.fa-github {
-background: #55ACEE;
-color: white;
-}
-
-/* LinkedIn */
-.fa-linkedin {
-background: #55ACEE;
-color: white;
-}
-
-/* Envelope */
-.fa-envelope {
-background: #55ACEE;
-color: white;
+    opacity: 0.9;
 }
