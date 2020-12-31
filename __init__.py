@@ -40,13 +40,13 @@ def bkapp(doc):
 
 @app.route('/projects/terrain-correction/', methods=['GET'])
 def bkapp_page():
-    script = server_document('http://localhost:5006/bkapp')
+    script = server_document('http://192.168.99.103:5006/bkapp')
     return render_template("terrain-correction.html", script=script, template="Flask")
 
 def bk_worker():
     # Can't pass num_procs > 1 in this configuration. If you need to run multiple
     # processes, see e.g. flask_gunicorn_embed.py
-    server = Server({'/bkapp': bkapp}, io_loop=IOLoop(), allow_websocket_origin=["127.0.0.1:5000"])
+    server = Server({'/bkapp': bkapp}, io_loop=IOLoop(), allow_websocket_origin=["192.168.99.103:5000"])
     server.start()
     server.io_loop.start()
 
